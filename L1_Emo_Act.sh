@@ -1,7 +1,7 @@
 #!/bin/bash
 
 basedir=`pwd`
-MMAINDATADIR=/data/projects/ppi-effect-sizes/data
+MAINDATADIR=/data/projects/ppi-effect-sizes/data
 MAINOUTPUTDIR=/data/projects/ppi-effect-sizes/fsl
 
 task=EMOTION
