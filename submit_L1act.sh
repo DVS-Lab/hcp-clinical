@@ -2,7 +2,7 @@
 
 
 for task in Emo Soc; do
-  for subj in `cat newsubs`; do
+  for subj in `cat newsubs_n116.txt`; do
   	for RUN in LR RL; do
 
   		#Manages the number of jobs and cores
