@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-for task in Emo Soc; do
+for task in Gam EM; do
   for subj in `cat newsubs_n116.txt`; do
   	for RUN in LR RL; do
 
