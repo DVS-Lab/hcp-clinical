@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-for task in Gam WM; do
+for task in WM; do
   for subj in `cat newsubs_n116.txt`; do
   	for RUN in LR RL; do
 

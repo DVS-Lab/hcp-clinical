@@ -22,10 +22,9 @@ fi
 
 #EV files
 EVDIR=${MAINDATADIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/EVs
-cd $EVDIR
-rm -rf 2bk_all.txt 0bk_all.txt
-cat 2bk_body.txt 2bk_faces.txt 2bk_places.txt 2bk_tools.txt > 2bk_all.txt
-cat 0bk_body.txt 0bk_faces.txt 0bk_places.txt 0bk_tools.txt > 0bk_all.txt
+rm -rf ${EVDIR}/2bk_all.txt ${EVDIR}/0bk_all.txt
+cat ${EVDIR}/2bk_body.txt ${EVDIR}/2bk_faces.txt ${EVDIR}/2bk_places.txt ${EVDIR}/2bk_tools.txt > ${EVDIR}/2bk_all.txt
+cat ${EVDIR}/0bk_body.txt ${EVDIR}/0bk_faces.txt ${EVDIR}/0bk_places.txt ${EVDIR}/0bk_tools.txt > ${EVDIR}/0bk_all.txt
 
 
 #find and replace: run feat for smoothing
