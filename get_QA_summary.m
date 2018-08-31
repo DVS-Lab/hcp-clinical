@@ -26,6 +26,15 @@ for s = 1:length(subs)
         for r = 1:length(run_names)
             idx = idx + 1;
             run_name = run_names{r};
+            
+            % /data/projects/ppi-effect-sizes/fsl/729557/MNINonLinear/Results/tfMRI_GAMBLING_RL/smoothing.feat/ICA_AROMA
+            % load classified_motion_ICs.txt
+            % length(classified_motion_ICs)
+            % /data/projects/ppi-effect-sizes/fsl/729557/MNINonLinear/Results/tfMRI_GAMBLING_RL/smoothing.feat/ICA_AROMA/melodic.ica
+            % load melodic_mix
+            % size(melodic_mix,2)
+
+            
             datadir = fullfile(maindatadir,'data',num2str(subnum),'MNINonLinear','Results',['tfMRI_' task '_' run_name]);
             abs_mean = load(fullfile(datadir,'Movement_AbsoluteRMS_mean.txt'));
             rel_mean = load(fullfile(datadir,'Movement_RelativeRMS_mean.txt'));
