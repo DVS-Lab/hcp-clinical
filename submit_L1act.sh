@@ -1,13 +1,13 @@
 #!/bin/bash
 
 
-for task in WM; do
-  for subj in `cat newsubs_n116.txt`; do
+for task in WM SOCIAL EMOTION GAMBLING; do
+  for subj in `cat all_new_subs.txt`; do
   	for RUN in LR RL; do
 
   		#Manages the number of jobs and cores
   		SCRIPTNAME=L1_${task}_Act.sh
-  		NCORES=20
+  		NCORES=12
   		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
   	  		sleep 1m
   		done
