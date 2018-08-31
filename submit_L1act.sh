@@ -7,7 +7,7 @@ for task in WM SOCIAL EMOTION GAMBLING; do
 
   		#Manages the number of jobs and cores
   		SCRIPTNAME=L1_${task}_Act.sh
-  		NCORES=12
+  		NCORES=6
   		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
   	  		sleep 1m
   		done
