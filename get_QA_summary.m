@@ -11,25 +11,25 @@ fname = fullfile(basedir,'headmotion_run.csv');
 fid1 = fopen(fname,'w');
 fprintf(fid1,'subj,task,run,abs_mean,rel_mean,pct_removed\n');
 
-% subject-level metrics
-fname = fullfile(basedir,'headmotion_subj.csv');
-fid2 = fopen(fname,'w');
-fprintf(fid2,'subj,abs_mean,rel_mean,pct_removed\n');
-
-subj_motion = zeros(length(subs),3);
-for s = 1:length(subs)
-    subnum = subs(s);
-    idx = 0;
-    run_mat = zeros(8,3); % place to store the data
-    for t = 1:length(tasks)
-        task = tasks{t};
+for t = 1:length(tasks)
+    task = tasks{t};
+    
+    % task-level metrics
+    fname = fullfile(basedir,['headmotion_task-' task '.csv']);
+    fid2 = fopen(fname,'w');
+    fprintf(fid2,'subj,abs_mean,rel_mean,pct_removed\n');
+        
+    for s = 1:length(subs)
+        subnum = subs(s);
+        idx = 0;
+        
+        task_mat = zeros(2,3); % place to store the data
         for r = 1:length(run_names)
-            idx = idx + 1;
             run_name = run_names{r};
-                        
+                    
             datadir = fullfile(maindatadir,'data',num2str(subnum),'MNINonLinear','Results',['tfMRI_' task '_' run_name]);
             abs_mean = load(fullfile(datadir,'Movement_AbsoluteRMS_mean.txt'));
-            rel_mean = load(fullfile(datadir,'Movement_RelativeRMS_mean.txt'));            
+            rel_mean = load(fullfile(datadir,'Movement_RelativeRMS_mean.txt'));
             
             fsldir = fullfile(maindatadir,'fsl',num2str(subnum),'MNINonLinear','Results',['tfMRI_' task '_' run_name]);
             motion_ICs_f = fullfile(fsldir,'smoothing.feat','ICA_AROMA','classified_motion_ICs.txt');
@@ -39,18 +39,16 @@ for s = 1:length(subs)
             melodic_mix = load(melodic_mix_f);
             total = size(melodic_mix,2);
             pct_bad = n_bad / total;
-     
+            
             fprintf(fid1,'%d,%s,%s,%f,%f,%f\n',subnum,task,run_name,abs_mean,rel_mean,pct_bad);
             
-            run_mat(idx,1) = abs_mean;
-            run_mat(idx,2) = rel_mean;
-            run_mat(idx,3) = pct_bad;
-
+            task_mat(r,1) = abs_mean;
+            task_mat(r,2) = rel_mean;
+            task_mat(r,3) = pct_bad;
+            
         end
+        fprintf(fid2,'%d,%f,%f,%f\n',subnum,mean(task_mat));
     end
-    subj_motion(s,:) = mean(run_mat);
-    fprintf(fid2,'%d,%f,%f,%f\n',subnum,subj_motion(s,:));
+    fclose(fid2);
 end
 fclose(fid1);
-fclose(fid2);
-figure,boxplot(subj_motion);
