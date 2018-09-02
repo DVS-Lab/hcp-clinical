@@ -21,27 +21,27 @@ for s = 1:length(subs)
     social = fullfile(fsldir,'L2_Social_Act.gfeat','cope1.feat','stats','zstat1.nii.gz');
     emotion = fullfile(fsldir,'L2_Emotion_Act.gfeat','cope1.feat','stats','zstat1.nii.gz');
     
-    cmd = sprintf('fslcc -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,gambling,wm);
+    cmd = sprintf('fslcc --noabs -p 4 -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,gambling,wm);
     [~,result] = system(cmd);
     data_mat(s,1) = str2double(result);
     
-    cmd = sprintf('fslcc -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,gambling,emotion);
+    cmd = sprintf('fslcc --noabs -p 4 -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,gambling,emotion);
     [~,result] = system(cmd);
     data_mat(s,2) = str2double(result);
     
-    cmd = sprintf('fslcc -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,gambling,social);
+    cmd = sprintf('fslcc --noabs -p 4 -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,gambling,social);
     [~,result] = system(cmd);
     data_mat(s,3) = str2double(result);
     
-    cmd = sprintf('fslcc -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,wm,social);
+    cmd = sprintf('fslcc --noabs -p 4 -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,wm,social);
     [~,result] = system(cmd);
     data_mat(s,4) = str2double(result);
     
-    cmd = sprintf('fslcc -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,wm,emotion);
+    cmd = sprintf('fslcc --noabs -p 4 -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,wm,emotion);
     [~,result] = system(cmd);
     data_mat(s,5) = str2double(result);
     
-    cmd = sprintf('fslcc -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,social,emotion);
+    cmd = sprintf('fslcc --noabs -p 4 -t -1 -m  %s %s %s  | awk ''{ print $3 }''',mask,social,emotion);
     [~,result] = system(cmd);
     data_mat(s,6) = str2double(result);
     
