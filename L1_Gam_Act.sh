@@ -14,7 +14,7 @@ NVOLUMES=`fslnvols ${DATA}`
 
 # checking L1 output
 if [ -e ${OUTPUT}.feat/cluster_mask_zstat1.nii.gz ]; then
-  echo "output exists, skipping...."
+  #echo "output exists, skipping...."
   exit
 else
   rm -rf ${OUTPUT}.feat

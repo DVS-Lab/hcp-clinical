@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-for task in WM SOCIAL EMOTION GAMBLING; do
-  for subj in `cat all_new_subs.txt`; do
+for task in Gam Soc Emo WM; do
+  for subj in `cat Michelle_AllSubs_n146.txt`; do
   	for RUN in LR RL; do
 
   		#Manages the number of jobs and cores
