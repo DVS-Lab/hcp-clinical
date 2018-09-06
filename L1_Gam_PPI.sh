@@ -26,7 +26,8 @@ fi
 EVLOSS=${MAINDATADIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/EVs/loss.txt
 EVWIN=${MAINDATADIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/EVs/win.txt
 
-#time course and mask for OFC as seed region
+#time course and mask for OFC/VS as seed region
+#change OTEMPLATE and OUTPUT names to differentiate OFC and VS seeds
 TIMECOURSE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/OFC_tc.txt
 MASK=/data/projects/ppi-effect-sizes/Masks/rOFC_Reward_seed.nii
 fslmeants -i $DATA -o $TIMECOURSE -m $MASK
