@@ -8,7 +8,7 @@ task=GAMBLING
 run=$1
 subj=$2
 
-OUTPUT=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI
+OUTPUT=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI_rVS
 DATA=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_Act.feat/filtered_func_data.nii.gz
 NVOLUMES=`fslnvols ${DATA}`
 
@@ -28,14 +28,14 @@ EVWIN=${MAINDATADIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/EVs/win.t
 
 #time course and mask for OFC/VS as seed region
 #change OTEMPLATE and OUTPUT names to differentiate OFC and VS seeds
-TIMECOURSE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/OFC_tc.txt
-MASK=/data/projects/ppi-effect-sizes/Masks/rOFC_Reward_seed.nii
+TIMECOURSE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/VS_tc.txt
+MASK=/data/projects/ppi-effect-sizes/Masks/rVS_Reward_seed.nii
 fslmeants -i $DATA -o $TIMECOURSE -m $MASK
 
 #find and replace, make sure no spaces after backslash or bash won't concatenate
 #run feat for smoothing
 ITEMPLATE=${basedir}/templates/L1_Gam_PPI.fsf
-OTEMPLATE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI.fsf
+OTEMPLATE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI_rVS.fsf
 sed -e 's@OUTPUT@'$OUTPUT'@g' \
 -e 's@DATA@'$DATA'@g' \
 -e 's@NVOLUMES@'$NVOLUMES'@g' \

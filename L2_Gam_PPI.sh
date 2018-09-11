@@ -1,14 +1,14 @@
 #!/bin/bash
 
 basedir=`pwd`
-MAINOUTPUTDIR=/data/projects/ppi-effects-sizes/fsl
+MAINOUTPUTDIR=/data/projects/ppi-effect-sizes/fsl
 
 #bash L2_Gam_PPI.sh $subj
 subj=$1
 
-INPUT01=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_LR/L1_Gam_PPI_rOFC.feat
-INPUT02=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_RL/L1_Gam_PPI_rOFC.feat
-OUTPUT=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/L2_Gam_PPI_rOFC
+INPUT01=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_LR/L1_Gam_PPI_rVS.feat
+INPUT02=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_RL/L1_Gam_PPI_rVS.feat
+OUTPUT=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/L2_Gam_PPI_rVS
 
 #check L2 output
 #remove output files if they exist to avoid +.gfeat directories; g signifies higher level
@@ -22,16 +22,16 @@ else
 fi
 
 for run in LR RL; do
-  rm -rf ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rOFC.feat/reg
-  mkdir -p ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rOFC.feat/reg
-  ln -s $FSLDIR/etc/flirtsch/ident.mat ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rOFC.feat/reg/example_func2standard.mat
-  ln -s $FSLDIR/etc/flirtsch/ident.mat ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rOFC.feat/reg/standard2example_func.mat
-  ln -s $FSLDIR/data/standard/MNI152_T1_2mm.nii.gz ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rOFC.feat/reg/standard.nii.gz
+  rm -rf ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rVS.feat/reg
+  mkdir -p ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rVS.feat/reg
+  ln -s $FSLDIR/etc/flirtsch/ident.mat ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rVS.feat/reg/example_func2standard.mat
+  ln -s $FSLDIR/etc/flirtsch/ident.mat ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rVS.feat/reg/standard2example_func.mat
+  ln -s $FSLDIR/data/standard/MNI152_T1_2mm.nii.gz ${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_GAMBLING_${run}/L1_Gam_PPI_rVS.feat/reg/standard.nii.gz
 done
 
 #find and replace
 ITEMPLATE=${basedir}/templates/L2_Gam_PPI.fsf
-OTEMPLATE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/L2_Gam_PPI_rOFC.fsf
+OTEMPLATE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/L2_Gam_PPI_rVS.fsf
 sed -e 's@OUTPUT@'$OUTPUT'@g' \
 -e 's@INPUT01@'$INPUT01'@g' \
 -e 's@INPUT02@'$INPUT02'@g' \
