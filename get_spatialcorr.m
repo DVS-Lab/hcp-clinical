@@ -9,13 +9,14 @@ fname = fullfile(basedir,'spatialcorr_subj.csv');
 fid = fopen(fname,'w');
 fprintf(fid,'subj,gam-wm,gam-emo,gam-soc,wm-soc,wm-emo,soc-emo\n');
 
+mask = fullfile(basedir,'groupmask.nii.gz');
+
 data_mat = zeros(length(subs),6);
 for s = 1:length(subs)
     subnum = subs(s);
     
     fsldir = fullfile(maindatadir,'fsl',num2str(subnum),'MNINonLinear','Results');
     
-    mask = fullfile(fsldir,'L2_Gam_Act.gfeat','cope3.feat','mask.nii.gz'); % will replace with L3 mask once Michelle runs analyses
     gambling = fullfile(fsldir,'L2_Gam_Act.gfeat','cope3.feat','stats','zstat1.nii.gz');
     wm = fullfile(fsldir,'L2_WM_Act.gfeat','cope3.feat','stats','zstat1.nii.gz');
     social = fullfile(fsldir,'L2_Social_Act.gfeat','cope1.feat','stats','zstat1.nii.gz');
