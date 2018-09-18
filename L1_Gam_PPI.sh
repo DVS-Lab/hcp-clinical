@@ -7,8 +7,9 @@ MAINOUTPUTDIR=/data/projects/ppi-effect-sizes/fsl
 task=GAMBLING
 run=$1
 subj=$2
+seed=$3
 
-OUTPUT=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI_rVS
+OUTPUT=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI_r$seed
 DATA=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_Act.feat/filtered_func_data.nii.gz
 NVOLUMES=`fslnvols ${DATA}`
 
@@ -26,16 +27,16 @@ fi
 EVLOSS=${MAINDATADIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/EVs/loss.txt
 EVWIN=${MAINDATADIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/EVs/win.txt
 
-#time course and mask for OFC/VS as seed region
+#time course and masks for Amygdala seed region
 #change OTEMPLATE and OUTPUT names to differentiate OFC and VS seeds
-TIMECOURSE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/VS_tc.txt
-MASK=/data/projects/ppi-effect-sizes/Masks/rVS_Reward_seed.nii
+TIMECOURSE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/${seed}_tc.txt
+MASK=/data/projects/ppi-effect-sizes/Masks/rT1_Amygdala_Seed.nii
 fslmeants -i $DATA -o $TIMECOURSE -m $MASK
 
 #find and replace, make sure no spaces after backslash or bash won't concatenate
 #run feat for smoothing
 ITEMPLATE=${basedir}/templates/L1_Gam_PPI.fsf
-OTEMPLATE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI_rVS.fsf
+OTEMPLATE=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_${task}_${run}/L1_Gam_PPI_r${seed}.fsf
 sed -e 's@OUTPUT@'$OUTPUT'@g' \
 -e 's@DATA@'$DATA'@g' \
 -e 's@NVOLUMES@'$NVOLUMES'@g' \

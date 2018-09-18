@@ -7,7 +7,7 @@ for task in Gam ; do
 
   		#Manages the number of jobs and cores
   		SCRIPTNAME=L1_${task}_PPI.sh
-  		NCORES=12
+  		NCORES=18
   		while [ $(ps -ef | grep -v grep | grep $SCRIPTNAME | wc -l) -ge $NCORES ]; do
   	  		sleep 1m
   		done
