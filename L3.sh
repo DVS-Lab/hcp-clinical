@@ -26,7 +26,7 @@ fi
 #input template L3Gamtest_sad for sad_dep
 #add _sad at the end of fsf file for nih sadness score
 #####old notes from L3 for NIH sadness#####
-ITEMPLATE=${basedir}/templates/L3_all.fsf
+ITEMPLATE=${basedir}/templates/L3_Emo.fsf
 OTEMPLATE=${MAINOUTPUTDIR}/L3_${TYPE}_${COPENUM}.fsf
 sed -e 's@OUTPUT@'$OUTPUT'@g' \
 -e 's@TYPE@'$TYPE'@g' \

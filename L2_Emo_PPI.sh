@@ -7,8 +7,8 @@ MAINOUTPUTDIR=/data/projects/ppi-effect-sizes/fsl
 subj=$1
 seed=$2
 
-INPUT01=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_EMOTION_LR/L1_Emotion_PPI_${seed}.feat
-INPUT02=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_EMOTION_RL/L1_Emotion_PPI_${seed}.feat
+INPUT01=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_EMOTION_LR/L1_Emo_PPI_${seed}.feat
+INPUT02=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/tfMRI_EMOTION_RL/L1_Emo_PPI_${seed}.feat
 OUTPUT=${MAINOUTPUTDIR}/${subj}/MNINonLinear/Results/L2_Emo_PPI_${seed}
 
 #check L2 output
@@ -46,5 +46,3 @@ for C in `seq $NCOPES`; do
   rm -rf ${OUTPUT}.gfeat/cope${C}.feat/filtered_func_data.nii.gz
   rm -rf ${OUTPUT}.gfeat/cope${C}.feat/var_filtered_func_data.nii.gz
 done
-                                                                                                                                              16,1          All
-
